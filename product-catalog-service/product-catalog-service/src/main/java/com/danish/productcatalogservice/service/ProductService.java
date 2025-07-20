@@ -4,6 +4,9 @@ import com.danish.productcatalogservice.exception.ResourceNotFoundException;
 import com.danish.productcatalogservice.model.Product;
 import com.danish.productcatalogservice.model.ProductDto;
 import com.danish.productcatalogservice.repository.ProductRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +23,7 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
+    @Cacheable("products")
     public List<ProductDto> findAll() {
         return productRepository.findAll().stream()
                 .map(this::convertToDto)
@@ -27,6 +31,7 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
+    @Cacheable(value = "products", key = "#id")
     public ProductDto findById(Long id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
@@ -41,6 +46,7 @@ public class ProductService {
     }
 
     @Transactional
+    @CachePut(value = "products", key = "#id")
     public ProductDto update(Long id, ProductDto productDto) {
         Product existingProduct = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
@@ -55,6 +61,7 @@ public class ProductService {
     }
 
     @Transactional
+    @CacheEvict(value = "products", key = "#id")
     public void delete(Long id) {
         if (!productRepository.existsById(id)) {
             throw new ResourceNotFoundException("Product not found with id: " + id);
