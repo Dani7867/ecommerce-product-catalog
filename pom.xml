@@ -12,6 +12,7 @@
     <modules>
         <module>product-catalog-service/product-catalog-service</module>
         <module>inventory-service/inventory-service</module>
+        <module>discovery-server/discovery-server</module>
     </modules>
 
     <properties>
