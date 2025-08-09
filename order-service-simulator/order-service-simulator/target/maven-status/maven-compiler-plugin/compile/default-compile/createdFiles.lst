@@ -1,0 +1,4 @@
+com/danish/orderservicesimulator/controller/OrderController.class
+com/danish/orderservicesimulator/OrderServiceSimulatorApplication.class
+com/danish/orderservicesimulator/config/AwsSqsConfig.class
+com/danish/orderservicesimulator/service/OrderPublishingService.class

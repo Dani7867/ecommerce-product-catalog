@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.danish.orderservicesimulator.OrderServiceSimulatorApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.587 s -- in com.danish.orderservicesimulator.OrderServiceSimulatorApplicationTests
