@@ -26,7 +26,7 @@ public class InventoryController {
     @PostMapping("/test-consume")
     public ResponseEntity<String> testConsumeMessages() {
         // You will need to replace this with your actual SQS queue URL
-        String queueUrl = "<YOUR_SQS_FIFO_QUEUE_URL>";
+        String queueUrl = "https://sqs.us-east-1.amazonaws.com/038342322922/order-placement-fifo.fifo";
         sqsListener.receiveMessages(queueUrl);
         return ResponseEntity.ok("Attempted to consume messages.");
     }
